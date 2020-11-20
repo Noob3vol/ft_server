@@ -1,8 +1,20 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get install -y nginx \
-	php-fpm php-mysql mariadb-server vim
+ARG DEBIAN_FRONTEND=noninteractive
 
-COPY entry_point.sh /root/entry_point.sh
+RUN apt-get update && apt-get install -y nginx openssl \
+	php-fpm php-mysql php-mbstring\
+	mariadb-server vim \
+	wget | grep php > /root/php_version
 
-CMD ["bash", "/root/entry_point.sh"]
+
+COPY srcs/ /root/srcs/
+
+RUN bash /root/srcs/scripts/config_nginx.sh
+RUN bash /root/srcs/scripts/config_pma.sh
+RUN bash /root/srcs/scripts/config_db.sh
+RUN bash /root/srcs/start_services.sh
+
+RUN chown -R www-data:www-data /var/www/html
+
+CMD ["bash", "/root/srcs/start_services.sh"]
