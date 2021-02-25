@@ -1,13 +1,15 @@
 NAME_CON = test_con
+NAME = ft_server
+VERSION = 1.0
 DOCKERFILE = 
 SRCS = srcs
 
 
 all :
-	sudo docker build -t test:0.1 .
+	sudo docker build -t $(NAME):$(VERSION) .
 
 run : 
-	sudo docker run -p 80:80 -p 443:443 -it --name=test_con test:0.1
+	sudo docker run -p 80:80 -p 443:443 -it --name=$(NAME_CON) $(NAME):$(VERSION)
 
 clean :
 	sudo docker rm -f test_con
