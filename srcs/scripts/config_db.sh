@@ -3,7 +3,6 @@
 user=ft_server
 pass=ft_pass
 host=localhost
-pma_db=phpmyadmin
 wordpress_db=wordpress
 
 service mysql start
