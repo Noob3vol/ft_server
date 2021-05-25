@@ -4,13 +4,28 @@ This project aim write  a Docker Image to automate the build of a container
 running a nginx, wordpress and phpmyadmin service.
 you will also need dependency like php and mysql.
 
-##
+## Docker
+
+Docker is kind of a lightweight virtualisation technology used to maximise
+availibity and security of application. It got some concept attach to it
+but the most important of them are :
+
+- Image building is done with _Dockerfile_ which got his own set of rules
+and syntax. It's context is also detached from your system.
+
+- All manipulation on images and container can be done with docker API
+
+- it's os level virtualisation meaning security wise your "hypervisor" system
+is still vulnerable to kernel security issue
 
 ## debian under docker
+
 Systemd replace the init sytem used by debian-distribtution now. Since Docker
-use it's launch himself all the process needed to run the system you don't
-have access to it
-No systemctl you got to use service
+it's own init system to start all the process needed to run the system you don't
+have access to it.
+
+No systemctl you got to use service (or directly use binary intended for service
+purpose)
 https://askubuntu.com/questions/903354/difference-between-systemctl-and-service-commands
 
 ## nginx
@@ -36,6 +51,10 @@ tool for those who want to dig deeper.
 ---
 
 ## Utility
+
+You can find some script in the source, most are just here for educationnal
+purpose since the Dockerfile is suppose to build images without using script
+during installation.
 
 You can add your user to the docker group to use it without sudo
 https://www.configserverfirewall.com/ubuntu-linux/add-user-to-docker-group-ubuntu/
